@@ -22,4 +22,43 @@ Summarizes customer reviews for a product into a concise paragraph.
 
 ---
 
+## Getting Started
 
+### Prerequisites
+
+- [Bun](https://bun.sh) (for the server)
+- [Node.js](https://nodejs.org) (for the client)
+- An OpenAI API key
+
+### 1. Set up environment variables
+
+```bash
+cd packages/server
+cp .env.example .env
+# Add your OpenAI API key to .env
+```
+
+### 2. Start the server
+
+```bash
+cd packages/server
+bun dev
+# Server runs at http://localhost:3000
+```
+
+### 3. Start the client
+
+```bash
+cd packages/client
+npm install
+npm run dev
+# Client runs at http://localhost:5173
+```
+
+### Try it out
+
+- **WonderWorld Chatbot** — open `http://localhost:5173` and chat with the bot. Try asking: _"What rides do you have?"_ or _"How much are tickets?"_
+- **Review Summarizer** — navigate to a product page on the client and click summarize, or call the API directly:
+  ```
+  POST http://localhost:3000/api/products/1/reviews/summarize
+  ```
