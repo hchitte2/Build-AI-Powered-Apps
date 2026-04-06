@@ -1,19 +1,25 @@
 # Build AI-Powered Apps
 
-This repository contains the complete source code for the course **Build AI-Powered Apps**:
+This repo contains two full-stack AI-powered apps built with Node.js, React, and the OpenAI API. The first is a conversational chatbot that handles customer support for a theme park, maintaining context across a multi-turn chat session. The second is a review summarizer that reads real product reviews from a database and uses an LLM to distill them into a concise, useful summary. Together they demonstrate core patterns for integrating LLMs into production apps: prompt templating, conversation state, caching, and clean service architecture.
 
-https://codewithmosh.com/p/build-ai-powered-apps
+## App 1: WonderWorld Chatbot
 
-I have designed this course to teach you everything you need to know to confidently bring AI into your applications. In this course, you’ll learn how to:
+A customer support chatbot for a fictional theme park called WonderWorld.
 
-- Understand large language models (LLMs) and how they work  
-- Work with tokens, context windows, and model settings  
-- Write effective prompts using proven prompt engineering techniques  
-- Build a chatbot from scratch with a clean, maintainable architecture  
-- Create a product review summarizer to help users make faster decisions  
-- Integrate open-source models from Hugging Face and Ollama  
-- Run models locally on your own machine  
-- Apply clean code principles and best practices  
-- Use modern tools to build full-stack AI-powered applications  
+- **Input:** A user message (e.g. "What rides do you have?" or "How much are tickets?")
+- **Output:** A friendly, context-aware reply scoped to WonderWorld information
+- **How it works:** The server injects park info (rides, hours, pricing) into a system prompt via a template. Each conversation is tracked by ID, and the last response ID is passed back to the LLM so it maintains conversation history. The model used is `gpt-4o-mini` with a low temperature (0.2) to keep answers focused and consistent.
 
-By the end of this course, you’ll not only understand the foundations of AI models, but you’ll also have the skills and confidence to build real, production-ready AI-powered features that solve real-world problems.  
+---
+
+## App 2: Product Review Summarizer
+
+Summarizes customer reviews for a product into a concise paragraph.
+
+- **Input:** A product ID
+- **Output:** A short paragraph highlighting key positive and negative themes across reviews
+- **How it works:** The server fetches the latest 10 reviews for the product from the database, joins them, and sends them to the LLM with a summarization prompt. The resulting summary is cached in the database so repeat requests don't re-call the LLM.
+
+---
+
+
